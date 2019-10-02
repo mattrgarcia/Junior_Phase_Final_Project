@@ -1,9 +1,14 @@
+import Nav from './Nav';
 import React from 'react';
+import {HashRouter, Route} from 'react-router-dom';
+
 
 class App extends React.Component{
   render(){
     return(
-      <h1>Hello World</h1>
+      <HashRouter>
+        <Nav />
+      </HashRouter>
     );
   }
 }
