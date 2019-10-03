@@ -42,18 +42,15 @@ const School = conn.define('school', {
   }
 });
 
+Student.belongsTo(School);
+School.hasMany(Student, {foreignKey: 'schoolId'})
+
 const mapPromise = (items, model)=> {
   return Promise.all(items.map(item=> model.create(item)));
 };
+
 const syncAndSeed = async()=> {
   await conn.sync({ force: true });
-  const students = [
-    {firstName: 'Matt', lastName: 'Garcia', email: 'matt@gmail.com', gpa: 3.5},
-    {firstName: 'Brenda', lastName: 'Garcia', email: 'brenda@gmail.com', gpa: 4.0},
-    {firstName: 'Mila', lastName: 'Garcia', email: 'mila@gmail.com', gpa: 4.0}
-  ];
-  const [matt, brenda, mila ]= await mapPromise(students, Student);
-
   const schools = [
     {name: 'Cal Poly'},
     {name: 'USC'},
@@ -61,6 +58,14 @@ const syncAndSeed = async()=> {
   ];
 
   const [poly, usc, mit ] = await mapPromise(schools, School);
+
+  const students = [
+    {firstName: 'Matt', lastName: 'Garcia', email: 'matt@gmail.com', gpa: 3.5, schoolId: poly.id},
+    {firstName: 'Brenda', lastName: 'Garcia', email: 'brenda@gmail.com', gpa: 4.0, schoolId: usc.id},
+    {firstName: 'Mila', lastName: 'Garcia', email: 'mila@gmail.com', gpa: 4.0, schoolId: mit.id}
+  ];
+  const [matt, brenda, mila ]= await mapPromise(students, Student);
+
 };
 
 module.exports = {
