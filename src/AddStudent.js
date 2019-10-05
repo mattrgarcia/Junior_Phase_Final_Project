@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import{ createStudent } from './store'
 
 class AddStudent extends React.Component{
   constructor(){
@@ -10,17 +11,29 @@ class AddStudent extends React.Component{
       email: '',
       gpa: ''
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.onCreate = this.onCreate.bind(this);
+  }
+  handleChange(ev){
+    this.setState({[ev.target.name]: ev.target.value});
+    console.log(this.state);
+  }
+  onCreate(ev){
+    ev.preventDefault()
+    this.props.createStudent(this.state);
   }
 
   render(){
-    const schools = this.props.schools;
+    const {schools} = this.props;
+    const {handleChange, onCreate} = this;
     return(
-      <form>
+      <form onSubmit={onCreate}>
         <label>
           First Name:
             <input
               type='text'
               name='firstName'
+              onChange={handleChange}
             />
         </label>
         <br />
@@ -29,6 +42,7 @@ class AddStudent extends React.Component{
             <input
               type='text'
               name='lastName'
+              onChange={handleChange}
             />
         </label>
         <br />
@@ -37,6 +51,7 @@ class AddStudent extends React.Component{
             <input
               type='text'
               name='email'
+              onChange={handleChange}
             />
         </label>
         <br />
@@ -45,17 +60,20 @@ class AddStudent extends React.Component{
             <input
               type='text'
               name='gpa'
+              onChange={handleChange}
             />
         </label>
         <br />
         <label>
-          Pick A School:
-            <select>
+          Enroll At:
+            <select onChange={handleChange}>
               {
-                schools.map(school=><option key={school.id}>{school.name}</option>)
+                schools.map(school=><option key={school.id} >{school.name}</option>)
               }
             </select>
         </label>
+        <br />
+        <button type='submit'>Enroll</button>
       </form>
     );
   }
@@ -68,4 +86,12 @@ const mapStateToProps = ({schools, students})=> {
   };
 };
 
-export default connect(mapStateToProps)(AddStudent);
+const mapDispatchToProps = (dispatch)=> {
+  return{
+    createStudent: (student)=> {
+      return dispatch(createStudent(student))
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddStudent);

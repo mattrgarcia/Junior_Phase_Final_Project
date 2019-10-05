@@ -2,7 +2,7 @@ import Nav from './Nav';
 import React from 'react';
 import {HashRouter, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getSchools, getStudents} from './store';
+import {getSchools, getStudents, destroyStudent} from './store';
 import Schools from './Schools';
 import Students from './Students';
 import AddStudent from './AddStudent'
