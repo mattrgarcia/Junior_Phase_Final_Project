@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getSchools, getStudents} from './store';
 import Schools from './Schools';
 import Students from './Students';
+import AddStudent from './AddStudent'
 
 
 class App extends React.Component{
@@ -15,6 +16,7 @@ class App extends React.Component{
     return(
       <HashRouter>
         <Nav />
+        <Route component={AddStudent}/>
         <Route path='/schools' component={Schools}/>
         <Route path='/students' component={Students}/>
       </HashRouter>

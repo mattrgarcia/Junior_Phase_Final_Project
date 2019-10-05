@@ -5,7 +5,7 @@ const Students = ({ students })=> {
   return(
     <ul>
       {
-        students.map(student=> <li key={student.id}>{student.fullName}</li>)
+        students.map(student=> <li key={student.id}>{student.firstName} {student.lastName}</li>)
       }
     </ul>
   );
