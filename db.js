@@ -8,11 +8,7 @@ const Student = conn.define('student', {
     primaryKey: true,
     defaultValue: UUIDV4
   },
-  firstName: {
-    type: STRING,
-    allowNull: false
-  },
-  lastName: {
+  fullName: {
     type: STRING,
     allowNull: false
   },
@@ -60,9 +56,9 @@ const syncAndSeed = async()=> {
   const [poly, usc, mit ] = await mapPromise(schools, School);
 
   const students = [
-    {firstName: 'Matt', lastName: 'Garcia', email: 'matt@gmail.com', gpa: 3.5, schoolId: poly.id},
-    {firstName: 'Brenda', lastName: 'Garcia', email: 'brenda@gmail.com', gpa: 4.0, schoolId: usc.id},
-    {firstName: 'Mila', lastName: 'Garcia', email: 'mila@gmail.com', gpa: 4.0, schoolId: mit.id }
+    {fullName: 'Matt Garcia', email: 'matt@gmail.com', gpa: 3.5, schoolId: poly.id},
+    {fullName: 'Brenda Garcia', email: 'brenda@gmail.com', gpa: 4.0, schoolId: usc.id},
+    {fullName: 'Mila Garcia', email: 'mila@gmail.com', gpa: 4.0, schoolId: mit.id }
   ];
   const [matt, brenda, mila ]= await mapPromise(students, Student);
 

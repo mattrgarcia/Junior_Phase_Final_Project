@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
-const _Nav = ({ students, schools })=> {
+const Nav = ({ students, schools })=> {
   return(
     <nav>
       <NavLink to='/'>Acme Schools</NavLink>
@@ -22,4 +22,4 @@ const mapStateToProps = ({schools, students})=> {
   };
 };
 
-export default connect(mapStateToProps)(_Nav);
+export default connect(mapStateToProps)(Nav);

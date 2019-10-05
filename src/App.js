@@ -3,9 +3,11 @@ import React from 'react';
 import {HashRouter, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getSchools, getStudents} from './store';
+import Schools from './Schools';
+import Students from './Students';
 
 
-class _App extends React.Component{
+class App extends React.Component{
   componentDidMount(){
     this.props.loadData();
   }
@@ -13,6 +15,8 @@ class _App extends React.Component{
     return(
       <HashRouter>
         <Nav />
+        <Route path='/schools' component={Schools}/>
+        <Route path='/students' component={Students}/>
       </HashRouter>
     );
   }
@@ -33,4 +37,4 @@ const mapDispatchToProps = (dispatch)=> {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(_App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
