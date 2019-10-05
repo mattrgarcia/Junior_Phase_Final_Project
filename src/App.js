@@ -1,9 +1,14 @@
 import Nav from './Nav';
 import React from 'react';
 import {HashRouter, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getSchools, getStudents} from './store';
 
 
-class App extends React.Component{
+class _App extends React.Component{
+  componentDidMount(){
+    this.props.loadData();
+  }
   render(){
     return(
       <HashRouter>
@@ -12,5 +17,20 @@ class App extends React.Component{
     );
   }
 }
+const mapStateToProps = ({schools, students})=> {
+  return {
+    schools,
+    students
+  };
+};
 
-export default App;
+const mapDispatchToProps = (dispatch)=> {
+  return{
+    loadData: ()=>{
+      dispatch(getSchools());
+      dispatch(getStudents());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(_App);

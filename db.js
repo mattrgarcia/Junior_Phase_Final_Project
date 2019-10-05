@@ -62,7 +62,7 @@ const syncAndSeed = async()=> {
   const students = [
     {firstName: 'Matt', lastName: 'Garcia', email: 'matt@gmail.com', gpa: 3.5, schoolId: poly.id},
     {firstName: 'Brenda', lastName: 'Garcia', email: 'brenda@gmail.com', gpa: 4.0, schoolId: usc.id},
-    {firstName: 'Mila', lastName: 'Garcia', email: 'mila@gmail.com', gpa: 4.0, schoolId: mit.id}
+    {firstName: 'Mila', lastName: 'Garcia', email: 'mila@gmail.com', gpa: 4.0, schoolId: mit.id }
   ];
   const [matt, brenda, mila ]= await mapPromise(students, Student);
 
