@@ -17,7 +17,6 @@ class AddStudent extends React.Component{
   }
   handleChange(ev){
     this.setState({[ev.target.name]: ev.target.value});
-    console.log(this.state);
   }
   onCreate(ev){
     ev.preventDefault()
