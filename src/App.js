@@ -4,6 +4,7 @@ import {HashRouter, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getSchools, getStudents, destroyStudent} from './store';
 import Schools from './Schools';
+import School from './School';
 import Students from './Students';
 import AddStudent from './AddStudent'
 
@@ -19,6 +20,7 @@ class App extends React.Component{
         <Route component={AddStudent}/>
         <Route path='/schools' component={Schools}/>
         <Route path='/students' component={Students}/>
+        <Route path='/schools/:id' component={School}/>
       </HashRouter>
     );
   }

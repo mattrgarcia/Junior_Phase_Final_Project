@@ -21,9 +21,9 @@ class Students extends React.Component{
     const{handleChange} = this;
 
     const enrolled = (student)=> {
-      const found = schools.find(school=> school.id === student.schoolId);
-      if(found){
-        return found.name
+      const enrolledSchool = schools.find(school=> school.id === student.schoolId);
+      if(enrolledSchool){
+        return enrolledSchool.name
       }else{
         return ''
       }
