@@ -18,9 +18,9 @@ class App extends React.Component{
       <HashRouter>
         <Nav />
         <Route component={AddStudent}/>
-        <Route path='/schools' component={Schools}/>
-        <Route path='/students' component={Students}/>
-        <Route path='/schools/:id' component={School}/>
+        <Route exact path='/schools' component={Schools}/>
+        <Route exact path='/students' component={Students}/>
+        <Route  path='/schools/:id' component={School}/>
       </HashRouter>
     );
   }

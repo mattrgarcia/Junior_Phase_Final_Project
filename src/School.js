@@ -1,9 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const School = ()=> {
-  return(
-    <h1>School</h1>
-  );
+class School extends React.Component{
+  constructor(){
+    super()
+  }
+  render(){
+    const {schools, students, match} = this.props
+    const school = (schools)=> {
+      const found = schools.find(school=> school.id ===  match.params.id)
+      return found.name
+    }
+    return(
+      <h1>{school(schools)}</h1>
+    );
+  }
 }
-export default School
+
+const mapStateToProps = ({schools, students, match})=> {
+  return {
+    schools,
+    students
+  };
+};
+export default connect(mapStateToProps)(School)
