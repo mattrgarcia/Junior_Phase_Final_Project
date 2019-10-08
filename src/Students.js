@@ -2,19 +2,30 @@ import React from 'react';
 import {connect} from 'react-redux';
 import{ destroyStudent } from './store';
 
-const Students = ({ students, destroy })=> {
+const Students = ({ students, schools, destroy })=> {
   return(
     <ul>
       {
-        students.map(student=> <li key={student.id}>{student.firstName} {student.lastName}<button onClick={()=> destroy(student)}>Destroy Student</button></li>)
+        students.map(student=>
+        <li key={student.id}>
+        {student.firstName} {student.lastName}
+        <select>
+        <option>--Not Enrolled</option>
+          {
+            schools.map(school=><option key={school.id} >{school.name}</option>)
+          }
+        </select>
+        <button onClick={()=> destroy(student)}>Destroy Student</button>
+        </li>)
       }
     </ul>
   );
 };
 
-const mapStateToProps = ({students})=> {
+const mapStateToProps = ({students, schools})=> {
   return {
-    students
+    students,
+    schools
   };
 };
 const mapDispatchToProps = (dispatch)=> {

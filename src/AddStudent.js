@@ -9,7 +9,8 @@ class AddStudent extends React.Component{
       firstName: '',
       lastName: '',
       email: '',
-      gpa: ''
+      gpa: '',
+      schoolId: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.onCreate = this.onCreate.bind(this);
@@ -66,9 +67,10 @@ class AddStudent extends React.Component{
         <br />
         <label>
           Enroll At:
-            <select onChange={handleChange}>
+            <select value={this.state.schoolId} name='schoolId' onChange={handleChange}>
+            <option>--Not Enrolled--</option>
               {
-                schools.map(school=><option key={school.id} >{school.name}</option>)
+                schools.map(school=><option name='schoolId' value={school.id}key={school.id} >{school.name}</option>)
               }
             </select>
         </label>

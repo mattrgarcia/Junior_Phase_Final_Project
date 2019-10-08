@@ -26,12 +26,7 @@ app.get('/api/schools', (req, res, next)=>{
 
 app.post('/api/students', async (req, res, next)=> {
   try {
-    res.status(201).send (await Student.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        gpa: req.body.gpa
-      }))
+    res.status(201).send (await Student.create(req.body))
 
   } catch (ex) {
     next(ex)
