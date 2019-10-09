@@ -12,7 +12,10 @@ class School extends React.Component{
       return found.name
     }
     return(
-      <h1>{school(schools)}</h1>
+      <div>
+        <h1>{school(schools)}</h1>
+      </div>
+
     );
   }
 }
